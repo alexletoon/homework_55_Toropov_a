@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+
+{%block title%}{%endblock%}
+
+{%block menu%}
+<li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="{% url 'index_view' %}">Home</a>
+</li>
+{%endblock%}
+
+
+{% block container %}
+<div class="head">
+    <h3 class="main-head">
+        Вы действительно хотите удалить данную задачу?
+    </h1>
+</div>
+<div class="body">
+    <p class="task">Задача: {{task.task}}</p>
+    <p class="task">Описание: <br> {{ task.description }}</p>
+    <hr>
+    {% for choice in choices %}
+        {%if task.status == choice.0 %}
+            <p> Статус: {{choice.1}} </p>
+        {%endif%}
+    {% endfor %}
+
+    <hr>
+    <p> Закончить до: {{task.deadline_date}} </p>
+    <hr>
+    <form action="{% url 'task_deleted' task.id  %}" method="POST">
+        <input type="submit" value="Удалить">
+        <a href="{% url 'index_view' %}"></a>
+    </form>
+
+    
+</div>
+
+{% endblock %}

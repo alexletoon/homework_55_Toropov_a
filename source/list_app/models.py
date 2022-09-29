@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.db.models import TextChoices
 
@@ -14,6 +15,8 @@ class Task(models.Model):
     status = models.CharField(verbose_name='Статус', max_length=12, choices = Choices.choices)
     deadline_date = models.DateField(verbose_name='Deadline', auto_now_add=False, auto_now=False, blank = True, null = True)
     created_at = models.DateField(verbose_name='Дата создания', auto_now_add=True)
+    is_deleted = models.BooleanField(verbose_name="Удалено", default=False, null=False)
+    deleted_at = models.DateTimeField(verbose_name='Дата удаления', null=True, default=None)
 
     def __str__(self) -> str:
         return f'Task: {self.task} Description: {self.description}, Status: {self.status}, deadline: {self.deadline_date}'
