@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block menu %}{% endblock %}
+
+
+{% block container %}
+<h5> Список задач</h5>
+{%for task in tasks%}
+<hr class="line">
+<p class="task">Задача: <br> {{task.task}} </p>
+{% for choice in choices %}
+    {%if task.status == choice.0%}
+        <p class="status">Статус - {{choice.1}} </p>
+    {%endif%}
+{%endfor%}
+<p class="deadline">Закончить до - {{task.deadline_date}} </p>
+<p><a href="{% url 'task_view' task.id %}">Подробнее</a></p>
+<p><a href=" {% url 'update_task' task.id %} ">Редактировать</a></p>
+{% endfor %}
+{% endblock %}
+
