@@ -48,12 +48,14 @@ def update_view(request, pk):
 
 
 def delete_task_view(request, pk):
-     task = get_object_or_404(request, pk=pk)
+     task = get_object_or_404(Task, pk=pk)
      return render(request, 'task_confirm_delete.html', context={'task': task})
 
 
 def delete_confirmed_view(request, pk):
     task = get_object_or_404(Task, pk=pk)
-    
+    task.delete()
+    return redirect('index_view')
+
 
 

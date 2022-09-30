@@ -6,7 +6,7 @@ class TaskAdmin(admin.ModelAdmin):
     list_display = ('id', 'task', 'description', 'status', 'deadline_date', 'created_at')
     list_filter = ('id', 'status', 'deadline_date', 'created_at')
     search_field = ('status', 'deadline_date')
-    fields = ('task', 'status','description', 'deadline_date', 'created_at')
+    fields = ('task', 'status','description', 'deadline_date', 'is_deleted')
 
 
 admin.site.register(Task, TaskAdmin)

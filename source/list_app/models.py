@@ -1,4 +1,6 @@
+from datetime import datetime
 from email.policy import default
+from time import timezone
 from django.db import models
 from django.db.models import TextChoices
 
@@ -20,3 +22,9 @@ class Task(models.Model):
 
     def __str__(self) -> str:
         return f'Task: {self.task} Description: {self.description}, Status: {self.status}, deadline: {self.deadline_date}'
+    
+
+    def delete(self, using=None, keep_parents=False):
+        self.deleted_at = datetime.now()
+        self.is_deleted = True
+        self.save()

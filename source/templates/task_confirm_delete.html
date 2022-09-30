@@ -28,9 +28,10 @@
     <hr>
     <p> Закончить до: {{task.deadline_date}} </p>
     <hr>
-    <form action="{% url 'task_deleted' task.id  %}" method="POST">
+    <form action="{% url 'deleted' task.id  %}" method="POST">
+        {% csrf_token %}
         <input type="submit" value="Удалить">
-        <a href="{% url 'index_view' %}"></a>
+        <a href="{% url 'index_view' %}">Нет</a>
     </form>
 
     

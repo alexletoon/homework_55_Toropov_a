@@ -16,6 +16,7 @@
 <p class="deadline">Закончить до - {{task.deadline_date}} </p>
 <p><a href="{% url 'task_view' task.id %}">Подробнее</a></p>
 <p><a href=" {% url 'update_task' task.id %} ">Редактировать</a></p>
+<p><a href=" {% url 'delete_task' task.id %} ">Удалить</a></p>
 {% endfor %}
 {% endblock %}
 

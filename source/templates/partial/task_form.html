@@ -1,0 +1,22 @@
+<label for="task">Введите задачу</label>
+<input class="task" type="text" name="task" id="task" value="{{ task.task }}"> 
+<br>
+<label for="description"> Введите описание </label>
+<textarea class="desc" name="description" id="description" cols="30" rows="10" placeholder="Описание">{{task.description}}</textarea>
+<br>
+<label for="status"> Укажите статус</label>
+<select class="stats" name="status" id="status">
+    {% for choice in choices %}
+        {% if task.status == choice.0 %}
+            <option value="{{choice.0}}" selected>{{choice.1}}</option>
+        {% else  %}
+            <option value="{{choice.0}}" >{{choice.1}}</option>
+        {% endif  %}
+    {% endfor %}
+</select>
+<br>
+<label for="date">Введите дату выполнения</label>
+<input class="date" type="date" name="date" id="date" required value="{{task.deadline_date|date:'Y-m-d'}}">
+<br>
+
+<input type="submit" value = "{{button_text}}"> 
